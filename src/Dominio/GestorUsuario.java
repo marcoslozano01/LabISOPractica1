@@ -1,4 +1,4 @@
-package legacy;
+package Dominio;
 
 public class GestorUsuario {
 	
@@ -18,5 +18,16 @@ public class GestorUsuario {
 			insertado = true;
 		return insertado;		
 	}
+	
+	public static boolean eliminarUsuario(String login, String password) throws Exception{
+		boolean insertado = false;
+		
+		Usuario u = new Usuario(login, password);
+		if(u.delete())
+			insertado = true;
+		return insertado;		
+	}
+	
+	
 
 }

@@ -1,4 +1,4 @@
-package legacy;
+package Interface;
 
 import java.awt.EventQueue;
 
@@ -7,6 +7,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import org.apache.derby.jdbc.EmbeddedDriver;
+
+import Dominio.BDConstantes;
+import Dominio.GestorUsuario;
 
 import javax.swing.JLabel;
 
@@ -24,6 +27,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+
+import Dominio.GestorUsuario;
+import Dominio.BDConstantes;
 
 public class JFrameLogin extends JFrame {
 
@@ -87,11 +93,8 @@ public class JFrameLogin extends JFrame {
 		buttonAceptar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				boolean existe = false;
 				try {
-					if (Usuario.read(textFieldLog.getText(), textFieldPass.getText()) != null)
-						existe = true;
-					if (existe) {
+					if (GestorUsuario.autenticar(textFieldLog.getText(), textFieldPass.getText())) {
 						textPaneEstado.setText("El login ha  sido correcto");
 					} else {
 						textPaneEstado.setText("El login ha sido incorrecto");
